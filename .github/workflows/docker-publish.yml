@@ -27,7 +27,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-
+      - name: Login to nvcr.io (NGC)
+        if: ${{ secrets.NVCR_PASSWORD != '' }}
+        run: |
+          echo "Logging in to nvcr.io"
+          echo "${{ secrets.NVCR_PASSWORD }}" | docker login nvcr.io -u '$oauthtoken' --password-stdin
 
       - name: Build and push image
         uses: docker/build-push-action@v5
