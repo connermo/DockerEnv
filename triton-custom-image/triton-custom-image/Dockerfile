@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tritonserver/25.03-trtllm-python-py3
+FROM nvcr.io/nvidia/tritonserver:24.08-py3
 
 ENV DEBIAN_FRONTEND=noninteractive \
     CODE_SERVER_PORT=8080 \
