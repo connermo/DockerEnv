@@ -27,6 +27,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Login to nvcr.io (NGC)
+        continue-on-error: true
+        uses: docker/login-action@v2
+        with:
+          registry: nvcr.io
+          username: $oauthtoken
+          password: ${{ secrets.NVCR_PASSWORD }}
+
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
